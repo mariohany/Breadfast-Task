@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.skeleton.app.feature.splash.presentation.view.SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/splashFragmentToPostsFragmentAction"
+            app:destination="@id/postsFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/postsFragment"
+        android:name="com.skeleton.app.feature.posts.presentation.view.PostsFragment"
+        tools:layout="@layout/fragment_posts">
+        <action
+            android:id="@+id/postsFragmentToPostDetailsFragmentAction"
+            app:destination="@id/postDetailsFragment"
+            app:launchSingleTop="true">
+            <argument
+                android:name="post"
+                app:argType="com.skeleton.app.feature.posts.domain.entities.PostEntity" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/postDetailsFragment"
+        android:name="com.skeleton.app.feature.postdetails.presentation.view.PostDetailsFragment"
+        tools:layout="@layout/fragment_post_details">
+        <argument
+            android:name="post"
+            app:argType="com.skeleton.app.feature.posts.domain.entities.PostEntity" />
+    </fragment>
+</navigation>
