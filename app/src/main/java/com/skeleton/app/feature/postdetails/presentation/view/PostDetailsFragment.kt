@@ -22,6 +22,10 @@ class PostDetailsFragment :
     private val viewModel: PostDetailsViewModel by viewModels()
     private val commentsAdapter = CommentsAdapter()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.loadPostComments()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUI()

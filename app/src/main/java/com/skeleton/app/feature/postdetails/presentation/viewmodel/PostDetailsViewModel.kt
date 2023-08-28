@@ -20,11 +20,7 @@ class PostDetailsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(PostDetailsScreenState(post = args.post))
     val uiState: StateFlow<PostDetailsScreenState> = _uiState
 
-    init {
-        loadPostComments()
-    }
-
-    private fun loadPostComments() = viewModelScope.launch {
+    fun loadPostComments() = viewModelScope.launch {
         _uiState.emit(uiState.value.copy(isLoading = true))
         commentsRepo.getPostComments(args.post.id).fold({
             _uiState.emit(

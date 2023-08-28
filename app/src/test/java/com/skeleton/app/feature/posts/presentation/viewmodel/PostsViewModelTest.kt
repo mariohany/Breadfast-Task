@@ -7,6 +7,7 @@ import com.skeleton.app.feature.posts.domain.usecase.PostsUseCase
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -39,7 +40,8 @@ class PostsViewModelTest {
     @Test
     fun `test initial state getPosts() Success`() = runTest {
         val response = listOf(PostEntity(1000L, "name", "title", "body"))
-        whenever(useCase()).thenAnswer{response}
+        whenever(useCase()).thenAnswer { response }
+        assertEquals(PostsScreenState(isLoading = false), viewModel.uiState.first())
         coroutineScope {
             viewModel.getPosts()
         }
@@ -50,13 +52,14 @@ class PostsViewModelTest {
 
     @Test
     fun `test initial state getPosts() Failure`() = runBlocking {
-//        val response = listOf(PostEntity(1000L, "name", "title", "body"))
-//        whenever(useCase()).thenReturn(){response}
-//        coroutineScope {
-//            viewModel.getPosts()
-//        }
-//        viewModel.uiState.test {
-//            assertEquals(PostsScreenState(isLoading = false, postsList = response), awaitItem())
-//        }
+        val response = Throwable()
+        whenever(useCase()).thenReturn (Result.failure<List<PostEntity>>(response))
+        assertEquals(PostsScreenState(isLoading = false), viewModel.uiState.first())
+        coroutineScope {
+            viewModel.getPosts()
+        }
+        viewModel.uiState.test {
+            assertEquals(PostsScreenState(isLoading = false, errorState = true), awaitItem())
+        }
     }
 }

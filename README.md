@@ -1,18 +1,18 @@
 # Breadfast Task
 
-Welcome to the Breadfast Task Repository! This repository contains the source code for an Android application that consists of two screens: a posts list screen and a post details/comments screen. This app is designed to provide users with the ability to explore and interact with posts and their associated details and comments.
+Welcome to the Breadfast Task Repository! This repository contains the source code for an Android application that consists of two screens: a posts list screen and a post details/comments screen. This app is designed to allow users to explore and interact with posts and their associated details and comments.
 
 ## Screenshots
 
 Here are some screenshots of the app's screens:
 
 ### Posts List Screen
-<img src="https://https://github.com/mariohany/Breadfast-Task/blob/main/screenshots/posts_list_screen.png" hight="200" width="150">
+<img src="https://github.com/mariohany/Breadfast-Task/blob/main/screenshots/posts_list_screen.png" hight="200" width="150">
 
 Description: This screen displays a list of posts, each showing a title and a brief preview of the content.
 
 ### Post Details/Comments Screen
-<img src="https://https://github.com/mariohany/Breadfast-Task/blob/main/screenshots/post_details_screen.png" hight="200" width="150">
+<img src="https://github.com/mariohany/Breadfast-Task/blob/main/screenshots/post_details_screen.png" hight="200" width="150">
 
 Description: This screen provides detailed information about a selected post, including the full content of the post and a list of comments from other users.
 
