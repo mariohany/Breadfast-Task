@@ -22,6 +22,11 @@ class PostsFragment : BaseFragment<FragmentPostsBinding>(FragmentPostsBinding::i
     private val viewModel: PostsViewModel by viewModels()
     private val postsAdapter = PostsAdapter()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getPosts()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUI()

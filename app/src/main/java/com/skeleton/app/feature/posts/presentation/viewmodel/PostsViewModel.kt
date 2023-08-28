@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skeleton.app.feature.posts.domain.usecase.PostsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -16,11 +17,8 @@ class PostsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(PostsScreenState())
     val uiState: StateFlow<PostsScreenState> = _uiState
 
-    init {
-        getPosts()
-    }
-
-    private fun getPosts() = viewModelScope.launch {
+    @ExperimentalCoroutinesApi
+    fun getPosts() = viewModelScope.launch {
         _uiState.emit(uiState.value.copy(isLoading = true))
         postsUseCase().fold({
             _uiState.emit(
